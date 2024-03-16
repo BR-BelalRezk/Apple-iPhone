@@ -3,6 +3,7 @@ import { StaticImageData } from "next/image";
 import * as THREE from "three";
 import Lights from "./Lights";
 import { Suspense } from "react";
+import { Iphone } from "./Iphone";
 type Props = {
   index: 1 | 2;
   groupRef: React.MutableRefObject<THREE.Group<THREE.Object3DEventMap>>;
@@ -32,7 +33,9 @@ export default function ModelView({
       <ambientLight intensity={0.3} />
       <PerspectiveCamera makeDefault position={[0, 0, 4]} />
       <Lights />
-      <Suspense fallback={<div>Loading...</div>}></Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Iphone />
+      </Suspense>
     </View>
   );
 }
