@@ -3,7 +3,7 @@ import { StaticImageData } from "next/image";
 import * as THREE from "three";
 import Lights from "./Lights";
 import { Suspense } from "react";
-import { Iphone } from "./Iphone";
+import Iphone from "./Iphone";
 type Props = {
   index: 1 | 2;
   groupRef: React.MutableRefObject<THREE.Group<THREE.Object3DEventMap>>;
