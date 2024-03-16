@@ -47,7 +47,11 @@ export default function ModelView({
         position={[0, 0, 0]}
       >
         <Suspense fallback={<div>Loading...</div>}>
-          <Iphone scale={index === 1 ? [15, 15, 15] : [17, 17, 17]} />
+          <Iphone
+            scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
+            item={item}
+            size={size}
+          />
         </Suspense>
       </group>
     </View>

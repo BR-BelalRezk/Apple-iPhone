@@ -3,13 +3,12 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ModelView from "./ModelView";
-import { LegacyRef, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { yellowImg } from "@/utils/utils";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
 import { models, sizes } from "@/constants/constants";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 export default function Model() {
   const [size, setSize] = useState<"small" | "large">("small");
@@ -24,6 +23,15 @@ export default function Model() {
   const large = useRef<THREE.Group<THREE.Object3DEventMap>>(new THREE.Group());
   const [smallRotation, setSmallRotation] = useState(0);
   const [largeRotation, setLargeRotation] = useState(0);
+  const [eventSource, setEventSource] = useState<HTMLElement | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    if (document.getElementById("root") !== null) {
+      setEventSource(document.getElementById("root")!);
+    }
+  }, []);
 
   useGSAP(() => {
     gsap.to("#heading", {
@@ -70,7 +78,7 @@ export default function Model() {
                 right: 0,
                 left: 0,
               }}
-              eventSource={document.getElementById("root")!}
+              eventSource={eventSource}
             >
               <View.Port />
             </Canvas>
