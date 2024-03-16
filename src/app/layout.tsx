@@ -24,7 +24,7 @@ export default function RootLayout({
         className={`${inter.className} text-white w-dvw overflow-x-hidden h-full bg-black border-[#3b3b3b] select-none`}
       >
         <Navbar />
-        <main>{children}</main>
+        <main id="root">{children}</main>
       </body>
     </html>
   );

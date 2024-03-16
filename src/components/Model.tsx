@@ -68,7 +68,7 @@ export default function Model() {
                 right: 0,
                 left: 0,
               }}
-              // eventSource={document.body}
+              eventSource={document.getElementById('root')!}
             >
               <View.Port />
             </Canvas>
