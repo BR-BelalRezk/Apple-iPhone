@@ -4,11 +4,12 @@ import * as THREE from "three";
 import Lights from "./Lights";
 import { Suspense } from "react";
 import Iphone from "./Iphone";
+
 type Props = {
   index: 1 | 2;
   groupRef: React.MutableRefObject<THREE.Group<THREE.Object3DEventMap>>;
   gsapType: "veiw1" | "veiw2";
-  controlRef: React.MutableRefObject<undefined>;
+  controlRef: any;
   setRotationState: React.Dispatch<React.SetStateAction<number>>;
   item: { title: string; color: string[]; img: StaticImageData };
   size: "small" | "large";
@@ -38,7 +39,7 @@ export default function ModelView({
         enablePan={false}
         rotateSpeed={0.5}
         target={new THREE.Vector3(0, 0, 0)}
-        onEnd={() => setRotationState(controlRef.cu)}
+        onEnd={() => setRotationState(controlRef.current.getAzimuthAngle())}
       />
       <group
         ref={groupRef}
@@ -46,7 +47,7 @@ export default function ModelView({
         position={[0, 0, 0]}
       >
         <Suspense fallback={<div>Loading...</div>}>
-          <Iphone />
+          <Iphone scale={index === 1 ? [15, 15, 15] : [17, 17, 17]} />
         </Suspense>
       </group>
     </View>

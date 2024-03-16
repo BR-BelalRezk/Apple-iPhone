@@ -3,12 +3,13 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ModelView from "./ModelView";
-import { useEffect, useRef, useState } from "react";
+import { LegacyRef, useRef, useState } from "react";
 import { yellowImg } from "@/utils/utils";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
 import { models, sizes } from "@/constants/constants";
+import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 export default function Model() {
   const [size, setSize] = useState<"small" | "large">("small");
@@ -17,12 +18,13 @@ export default function Model() {
     color: ["#8f8a81", "#ffe7b9", "#6f6c64"],
     img: yellowImg,
   });
-  const cameraControlSmall = useRef();
-  const cameraControlLarge = useRef();
-  const small = useRef(new THREE.Group());
-  const large = useRef(new THREE.Group());
+  const cameraControlSmall = useRef<any>();
+  const cameraControlLarge = useRef<any>();
+  const small = useRef<THREE.Group<THREE.Object3DEventMap>>(new THREE.Group());
+  const large = useRef<THREE.Group<THREE.Object3DEventMap>>(new THREE.Group());
   const [smallRotation, setSmallRotation] = useState(0);
   const [largeRotation, setLargeRotation] = useState(0);
+
   useGSAP(() => {
     gsap.to("#heading", {
       opacity: 0,
@@ -68,7 +70,7 @@ export default function Model() {
                 right: 0,
                 left: 0,
               }}
-              eventSource={document.getElementById('root')!}
+              eventSource={document.getElementById("root")!}
             >
               <View.Port />
             </Canvas>
