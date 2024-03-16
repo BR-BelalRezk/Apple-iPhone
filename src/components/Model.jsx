@@ -1,41 +1,62 @@
-"use client";
-
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ModelView from "./ModelView";
 import { useEffect, useRef, useState } from "react";
-import { yellowImg } from "@/utils/utils";
+import { yellowImg } from "../utils/utils";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
-import { models, sizes } from "@/constants/constants";
+import { models, sizes } from "../constants/constants";
+import { animateWithGsapTimeline } from "../animations/anim";
 
 export default function Model() {
-  const [size, setSize] = useState<"small" | "large">("small");
+  const [size, setSize] = useState("small");
   const [model, setModel] = useState({
     title: "iPhone 15 Pro in Natural Titanium",
     color: ["#8f8a81", "#ffe7b9", "#6f6c64"],
     img: yellowImg,
   });
-  const cameraControlSmall = useRef<any>();
-  const cameraControlLarge = useRef<any>();
-  const small = useRef<THREE.Group<THREE.Object3DEventMap>>(new THREE.Group());
-  const large = useRef<THREE.Group<THREE.Object3DEventMap>>(new THREE.Group());
+  const cameraControlSmall = useRef();
+  const cameraControlLarge = useRef();
+  const small = useRef(new THREE.Group());
+  const large = useRef(new THREE.Group());
   const [smallRotation, setSmallRotation] = useState(0);
   const [largeRotation, setLargeRotation] = useState(0);
-  const [eventSource, setEventSource] = useState<HTMLElement | undefined>(
-    undefined
-  );
 
+  const timeline = gsap.timeline();
   useEffect(() => {
-    if (document.getElementById("root") !== null) {
-      setEventSource(document.getElementById("root")!);
+    if (size === "large") {
+      animateWithGsapTimeline(
+        timeline,
+        small,
+        smallRotation,
+        "#view1",
+        "#view2",
+        {
+          transform: "translateX(-100%)",
+          duration: 2,
+        }
+      );
     }
-  }, []);
+
+    if (size === "small") {
+      animateWithGsapTimeline(
+        timeline,
+        large,
+        largeRotation,
+        "#view2",
+        "#view1",
+        {
+          transform: "translateX(0)",
+          duration: 2,
+        }
+      );
+    }
+  }, [size]);
 
   useGSAP(() => {
     gsap.to("#heading", {
-      opacity: 0,
+      opacity: 1,
       y: 0,
     });
   }, []);
@@ -53,7 +74,7 @@ export default function Model() {
             <ModelView
               index={1}
               groupRef={small}
-              gsapType="veiw1"
+              gsapType="view1"
               controlRef={cameraControlSmall}
               setRotationState={setSmallRotation}
               item={model}
@@ -62,7 +83,7 @@ export default function Model() {
             <ModelView
               index={2}
               groupRef={large}
-              gsapType="veiw2"
+              gsapType="view2"
               controlRef={cameraControlLarge}
               setRotationState={setLargeRotation}
               item={model}
@@ -78,7 +99,7 @@ export default function Model() {
                 right: 0,
                 left: 0,
               }}
-              eventSource={eventSource}
+              eventSource={document.getElementById("root")}
             >
               <View.Port />
             </Canvas>

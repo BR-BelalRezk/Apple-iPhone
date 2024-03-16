@@ -1,20 +1,20 @@
-"use client";
-
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { heroVideo, smallHeroVideo } from "../utils/utils";
 
 export default function Hero() {
-  const [video, setVideo] = useState("");
+  const [video, setVideo] = useState(
+    window.innerWidth < 760 ? smallHeroVideo : heroVideo
+  );
+  const handleVideoSrcSet = () => {
+    if (window.innerWidth < 768) {
+      setVideo(smallHeroVideo);
+    } else {
+      setVideo(heroVideo);
+    }
+  };
   useEffect(() => {
-    const handleVideoSrcSet = () => {
-      if (window.innerWidth < 768) {
-        setVideo("/videos/smallHero.mp4");
-      } else {
-        setVideo("/videos/hero.mp4");
-      }
-    };
     window.addEventListener("resize", handleVideoSrcSet);
     return () => window.removeEventListener("resize", handleVideoSrcSet);
   }, []);
@@ -58,12 +58,12 @@ export default function Hero() {
         id="cta"
         className="flex flex-col items-center opacity-0 translate-y-20"
       >
-        <Link
+        <a
           href="#highlights"
           className="duration-500 px-5 py-2 rounded-3xl bg-blue my-5 hover:bg-transparent border border-transparent hover:border hover:text-blue hover:border-blue"
         >
           Buy
-        </Link>
+        </a>
         <p className="font-normal text-xl">From $199/month or $999</p>
       </div>
     </section>

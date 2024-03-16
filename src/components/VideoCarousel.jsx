@@ -1,14 +1,13 @@
-import { hightlightsSlides } from "@/constants/constants";
-import { pauseImg, playImg, replayImg } from "@/utils/utils";
+import { hightlightsSlides } from "../constants/constants";
+import { pauseImg, playImg, replayImg } from "../utils/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Image from "next/image";
-import { SyntheticEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function VideoCarousel() {
-  const videoRef = useRef<HTMLVideoElement[]>([]);
-  const videoSpanRef = useRef<HTMLSpanElement[]>([]);
-  const videoDivRef = useRef<HTMLSpanElement[]>([]);
+  const videoRef = useRef([]);
+  const videoSpanRef = useRef([]);
+  const videoDivRef = useRef([]);
   const [video, setVideo] = useState({
     isEnd: false,
     startPlay: false,
@@ -16,9 +15,7 @@ export default function VideoCarousel() {
     isLastVideo: false,
     isPLaying: false,
   });
-  const [loadedData, setLoadedData] = useState<
-    SyntheticEvent<HTMLVideoElement, Event>[]
-  >([]);
+  const [loadedData, setLoadedData] = useState([]);
   const { isEnd, startPlay, videoId, isLastVideo, isPLaying } = video;
 
   useGSAP(() => {
@@ -103,15 +100,10 @@ export default function VideoCarousel() {
     }
   }, [videoId, startPlay, isPLaying]);
 
-  const handleLoadedMetaData = (
-    e: SyntheticEvent<HTMLVideoElement, Event>,
-    index: number
-  ) => setLoadedData((prevState) => [...prevState, e]);
+  const handleLoadedMetaData = (e) =>
+    setLoadedData((prevState) => [...prevState, e]);
 
-  const handleProcess = (
-    type: "reset" | "play" | "pause" | "end" | "last",
-    index: number = 0
-  ) => {
+  const handleProcess = (type, index) => {
     switch (type) {
       case "end":
         setVideo((prevState) => ({
@@ -218,7 +210,7 @@ export default function VideoCarousel() {
           ))}
         </div>
         <button className="ml-4 p-4 rounded-full bg-gray-300 backdrop-blur flex items-center justify-center">
-          <Image
+          <img
             src={isLastVideo ? replayImg : !isPLaying ? playImg : pauseImg}
             alt="video control"
             onClick={() => {

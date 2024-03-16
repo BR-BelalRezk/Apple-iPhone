@@ -1,9 +1,6 @@
-"use client";
-
-import { rightImg, watchImg } from "@/utils/utils";
+import { rightImg, watchImg } from "../utils/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Image from "next/image";
 import VideoCarousel from "./VideoCarousel";
 
 export default function Highlights() {
@@ -38,14 +35,14 @@ export default function Highlights() {
               className="text-blue hover:underline cursor-pointer flex items-center text-xl opacity-0 translate-y-20"
             >
               Watch the film
-              <Image src={watchImg} alt="watch" className="ml-3" />
+              <img src={watchImg} alt="watch" className="ml-3" />
             </p>
             <p
               id="link"
               className="text-blue hover:underline cursor-pointer flex items-center text-xl opacity-0 translate-y-20"
             >
               Watch the event
-              <Image src={rightImg} alt="watch" className="ml-3" />
+              <img src={rightImg} alt="watch" className="ml-3" />
             </p>
           </div>
         </div>

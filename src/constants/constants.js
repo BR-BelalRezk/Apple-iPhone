@@ -1,4 +1,13 @@
-import { blackImg, blueImg, whiteImg, yellowImg } from "@/utils/utils";
+import {
+  blackImg,
+  blueImg,
+  highlightFirstVideo,
+  highlightFourthVideo,
+  highlightSecondVideo,
+  highlightThirdVideo,
+  whiteImg,
+  yellowImg,
+} from "../utils/utils";
 
 export const navLists = ["Store", "Mac", "iPhone", "Support"];
 
@@ -10,13 +19,13 @@ export const hightlightsSlides = [
       "Game‑changing chip.",
       "Groundbreaking performance.",
     ],
-    video: "/videos/highlight-first.mp4",
+    video: highlightFirstVideo,
     videoDuration: 4,
   },
   {
     id: 2,
     textLists: ["Titanium.", "So strong. So light. So Pro."],
-    video: "/videos/hightlight-third.mp4",
+    video: highlightSecondVideo,
     videoDuration: 5,
   },
   {
@@ -26,13 +35,13 @@ export const hightlightsSlides = [
       "longest optical zoom in",
       "iPhone ever. Far out.",
     ],
-    video: "/videos/hightlight-sec.mp4",
+    video: highlightThirdVideo,
     videoDuration: 2,
   },
   {
     id: 4,
     textLists: ["All-new Action button.", "What will yours do?."],
-    video: "/videos/hightlight-fourth.mp4",
+    video: highlightFourthVideo,
     videoDuration: 3.63,
   },
 ];
@@ -67,7 +76,7 @@ export const models = [
 export const sizes = [
   { label: '6.1"', value: "small" },
   { label: '6.7"', value: "large" },
-] as const;
+];
 
 export const footerLinks = [
   "Privacy Policy",
