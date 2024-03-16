@@ -1,4 +1,4 @@
-import { PerspectiveCamera, View } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
 import { StaticImageData } from "next/image";
 import * as THREE from "three";
 import Lights from "./Lights";
@@ -26,16 +26,17 @@ export default function ModelView({
     <View
       index={index}
       id={gsapType}
-      className={`w-full h-full border-2 border-white ${
-        index === 2 ? "right-[-100%]" : ""
-      }`}
+      className={`w-full h-full ${index === 2 ? "right-[-100%]" : ""}`}
     >
       <ambientLight intensity={0.3} />
       <PerspectiveCamera makeDefault position={[0, 0, 4]} />
       <Lights />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Iphone />
-      </Suspense>
+      <OrbitControls />
+      <group ref={groupRef} name={`${index === 1 ? "small" : "large"} `}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Iphone />
+        </Suspense>
+      </group>
     </View>
   );
 }
