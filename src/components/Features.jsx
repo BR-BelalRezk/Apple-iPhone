@@ -85,7 +85,7 @@ export default function Features() {
                 </div>
               </div>
 
-              <div className="w-full flex-center flex-col md:flex-row mt-10 md:mt-16 gap-5">
+              <div className="w-full flex items-center justify-center flex-col md:flex-row mt-10 md:mt-16 gap-5">
                 <div className="flex-1 flex items-center justify-center">
                   <p className="text-gray max-w-md text-lg md:text-xl font-semibold opacity-0 translate-y-[100px] g_text">
                     iPhone 15 Pro is{" "}
