@@ -19,7 +19,6 @@ import right from "/images/right.svg";
 import replay from "/images/replay.svg";
 import play from "/images/play.svg";
 import pause from "/images/pause.svg";
-
 import yellow from "/images/yellow.jpg";
 import blue from "/images/blue.jpg";
 import white from "/images/white.jpg";
