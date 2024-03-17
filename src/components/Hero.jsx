@@ -4,19 +4,9 @@ import { useEffect, useState } from "react";
 import { heroVideo, smallHeroVideo } from "../utils/utils";
 
 export default function Hero() {
-  const [video, setVideo] = useState(
-    window.innerWidth < 760 ? smallHeroVideo : heroVideo
-  );
-  const handleVideoSrcSet = () => {
-    if (window.innerWidth < 768) {
-      setVideo(smallHeroVideo);
-    } else {
-      setVideo(heroVideo);
-    }
-  };
+  const [video, setVideo] = useState("");
   useEffect(() => {
-    window.addEventListener("resize", handleVideoSrcSet);
-    return () => window.removeEventListener("resize", handleVideoSrcSet);
+    window.screen.width < 768 ? setVideo(smallHeroVideo) : setVideo(heroVideo);
   }, []);
 
   useGSAP(() => {
