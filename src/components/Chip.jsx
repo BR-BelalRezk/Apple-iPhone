@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { chipImg, frameImg, frameVideo } from "../utils/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { animateWithGsap } from "../animations/animations";
+import { animateWithGsap } from "../animations/anim";
 
 export default function Chip() {
   const videoRef = useRef();
