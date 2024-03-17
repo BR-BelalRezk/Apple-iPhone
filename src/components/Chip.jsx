@@ -30,7 +30,10 @@ export default function Chip() {
   return (
     <section className="sm:py-32 py-20 sm:px-10 px-5">
       <div className="mx-auto relative max-w-[1120px]">
-        <div id="chip" className=" w-full my-20">
+        <div
+          id="chip"
+          className="flex items-center justify-center w-full my-20"
+        >
           <img src={chipImg} alt="chip" width={180} height={180} />
         </div>
 
