@@ -3,6 +3,7 @@ import { chipImg, frameImg, frameVideo } from "../utils/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { animateWithGsap } from "../animations/anim";
+import Section from "./Section";
 
 export default function Chip() {
   const videoRef = useRef();
@@ -28,8 +29,7 @@ export default function Chip() {
   }, []);
 
   return (
-    <section className="sm:py-32 py-20 sm:px-10 px-5">
-      <div className="mx-auto relative max-w-[1120px]">
+    <Section>
         <div
           id="chip"
           className="flex items-center justify-center w-full my-20"
@@ -106,7 +106,6 @@ export default function Chip() {
             </p>
           </div>
         </div>
-      </div>
-    </section>
+        </Section>
   );
 }
